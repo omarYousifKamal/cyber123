@@ -36,12 +36,6 @@ def create_directory(directory):
     else:
         logging.warning(f"Directory '{directory}' already exists.")
 
-def delete_directory(directory):
-    if os.path.exists(directory):
-        shutil.rmtree(directory)
-        logging.info(f"Directory '{directory}' deleted successfully.")
-    else:
-        logging.warning(f"Directory '{directory}' does not exist.")
 
 def generate_random_string(length):
     letters = string.ascii_lowercase
