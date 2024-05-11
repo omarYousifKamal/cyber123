@@ -53,20 +53,6 @@ def generate_random_string(length):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for _ in range(length))
 
-def write_to_file(filename, content):
-    with open(filename, 'w') as f:
-        f.write(content)
-    logging.info(f"Content written to file '{filename}' successfully.")
-
-def read_from_file(filename):
-    if os.path.exists(filename):
-        with open(filename, 'r') as f:
-            content = f.read()
-        logging.info(f"Content read from file '{filename}' successfully.")
-        return content
-    else:
-        logging.warning(f"File '{filename}' does not exist.")
-        return ""
 
 def calculate_checksum(filename):
     if os.path.exists(filename):
