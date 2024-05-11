@@ -12,12 +12,6 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 app = Flask(__name__)
 
 
-def move_file(source, destination):
-    if os.path.exists(source):
-        shutil.move(source, destination)
-        logging.info(f"File '{source}' moved to '{destination}' successfully.")
-    else:
-        logging.warning(f"File '{source}' does not exist.")
 
 def copy_file(source, destination):
     if os.path.exists(source):
