@@ -165,3 +165,36 @@ def redirect_to_url():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+// Define a sample configuration object
+let config = {
+    debug: false,
+    logging: {
+        level: 'info'
+    }
+}
+
+// Function to update the configuration object
+function updateConfig(key, value) {
+    config[key] = value;
+}
+
+// Update the configuration with user input
+updateConfig('debug', true)
+
+// Assume an attacker controls user input
+let userInput = JSON.parse('{"__proto__": {"polluted": true}}');
+
+// Merge user input into the configuration object
+Object.assign(config, userInput)
+
+// Check if prototype pollution occurred
+if (config.polluted) {
+    console.log('Prototype Pollution Detected!');
+} else {
+    console.log('No Prototype Pollution Detected.');
+}
+
+// Output the updated configuration
+console.log(config)
