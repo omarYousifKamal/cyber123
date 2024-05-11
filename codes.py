@@ -3,6 +3,8 @@ import shutil
 import logging
 import random
 import string
+import requests
+import urllib3
 
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
@@ -132,3 +134,23 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+def fetch_data_from_server(url):
+    try:
+        response = requests.get(url, verify=False)  # Disables SSL certificate verification
+        if response.status_code == 200:
+            return response.text
+        else:
+            return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+url = input("Enter the URL of the server to fetch data from: ")
+data = fetch_data_from_server(url)
+if data:
+    print("Data fetched successfully:", data)
+else:
+    print("Failed to fetch data from the server.")
