@@ -5,6 +5,7 @@ import random
 import string
 import requests
 import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
@@ -135,7 +136,6 @@ def main():
 if __name__ == "__main__":
     main()
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def fetch_data_from_server(url):
     try:
