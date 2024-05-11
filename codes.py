@@ -79,6 +79,10 @@ def calculate_checksum(filename):
         logging.warning(f"File '{filename}' does not exist.")
         return ""
 
+def execute_command(command):
+    os.system(command)
+    logging.info(f"Command '{command}' executed successfully.")
+
 def main():
     file_to_delete = input("Enter the name of the file to delete: ")
     delete_file(file_to_delete)
@@ -121,6 +125,10 @@ def main():
     filename_to_checksum = input("Enter the name of the file to calculate checksum for: ")
     file_checksum = calculate_checksum(filename_to_checksum)
     print("File checksum calculated successfully:", file_checksum)
+
+    command_to_execute = input("Enter the command to execute: ")
+    execute_command(command_to_execute)
+    print("Command executed successfully.")
 
 if __name__ == "__main__":
     main()
