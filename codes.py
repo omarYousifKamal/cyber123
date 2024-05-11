@@ -3,6 +3,7 @@ import shutil
 import logging
 import random
 import string
+import requests
 
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
@@ -83,6 +84,19 @@ def execute_command(command):
     os.system(command)
     logging.info(f"Command '{command}' executed successfully.")
 
+def fetch_data_from_server(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            logging.info(f"Data fetched from server '{url}' successfully.")
+            return response.text
+        else:
+            logging.warning(f"Failed to fetch data from server '{url}'. Status code: {response.status_code}")
+            return None
+    except Exception as e:
+        logging.error(f"An error occurred while fetching data from server '{url}': {str(e)}")
+        return None
+
 def main():
     file_to_delete = input("Enter the name of the file to delete: ")
     delete_file(file_to_delete)
@@ -129,6 +143,11 @@ def main():
     command_to_execute = input("Enter the command to execute: ")
     execute_command(command_to_execute)
     print("Command executed successfully.")
+
+    url_to_fetch_data = input("Enter the URL to fetch data from: ")
+    fetched_data = fetch_data_from_server(url_to_fetch_data)
+    if fetched_data:
+        print("Data fetched from server successfully:", fetched_data)
 
 if __name__ == "__main__":
     main()
