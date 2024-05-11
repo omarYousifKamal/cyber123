@@ -182,12 +182,4 @@ def search():
 if __name__ == '__main__':
     app.run(debug=True)
 
-def divide_numbers(a, b):
-    result = a / b
-    return result
 
-numerator = 10
-denominator = 0
-
-result = divide_numbers(numerator, denominator)
-print("Result:", result)
