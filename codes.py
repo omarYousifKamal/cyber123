@@ -6,6 +6,7 @@ import string
 import requests
 import urllib3
 from flask import Flask, request, redirect
+from flask import Flask, request, render_template_string
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 app = Flask(__name__)
@@ -166,5 +167,17 @@ def redirect_to_url():
 if __name__ == '__main__':
     app.run(debug=True)
 
+    app = Flask(__name__)
 
-    
+@app.route('/')
+def index():
+    return render_template_string('<h1>Welcome to My Website</h1>')
+
+@app.route('/search')
+def search():
+    query = request.args.get('query', '')
+    # This is where the XSS vulnerability is introduced
+    return render_template_string('<h2>Search Results for: {{ query }}</h2>')
+
+if __name__ == '__main__':
+    app.run(debug=True)
