@@ -11,14 +11,6 @@ from flask import Flask, request, render_template_string
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 app = Flask(__name__)
 
-logging.basicConfig(filename='app.log', level=logging.INFO)
-
-def delete_file(filename):
-    if os.path.exists(filename):
-        os.remove(filename)
-        logging.info(f"File '{filename}' deleted successfully.")
-    else:
-        logging.warning(f"File '{filename}' does not exist.")
 
 def move_file(source, destination):
     if os.path.exists(source):
