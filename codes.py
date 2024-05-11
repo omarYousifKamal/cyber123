@@ -5,7 +5,10 @@ import random
 import string
 import requests
 import urllib3
+from flask import Flask, request, redirect
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+app = Flask(__name__)
 
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
@@ -154,3 +157,11 @@ if data:
     print("Data fetched successfully:", data)
 else:
     print("Failed to fetch data from the server.")
+
+@app.route('/redirect')
+def redirect_to_url():
+    target = request.args.get('url')
+    return redirect(target)
+
+if __name__ == '__main__':
+    app.run(debug=True)
