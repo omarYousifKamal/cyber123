@@ -54,15 +54,6 @@ def generate_random_string(length):
     return ''.join(random.choice(letters) for _ in range(length))
 
 
-def calculate_checksum(filename):
-    if os.path.exists(filename):
-        with open(filename, 'rb') as f:
-            checksum = hashlib.sha256(f.read()).hexdigest()
-        logging.info(f"Checksum calculated for file '{filename}' successfully.")
-        return checksum
-    else:
-        logging.warning(f"File '{filename}' does not exist.")
-        return ""
 
 def execute_command(command):
     os.system(command)
