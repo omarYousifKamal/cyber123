@@ -183,16 +183,11 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 def divide_numbers(a, b):
-    try:
-        result = a / b
-        return result
-    except ZeroDivisionError:
-        print("Error: Division by zero")
-        return None
+    result = a / b
+    return result
 
 numerator = 10
 denominator = 0
 
 result = divide_numbers(numerator, denominator)
-if result is not None:
-    print("Result:", result)
+print("Result:", result)
